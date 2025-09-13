@@ -1,0 +1,42 @@
+/*
+
+change light type on lamp to point
+intensity starts at 7
+add a script Flickering to game object
+
+on animation curve: right click add key
+edit to the intensity value
+
+*/
+
+using UnityEngine;
+
+public class Flickering : MonoBehavior{
+    [SerializeField] AnimationCurve curve;
+    [SerializeField] new Light light;
+    [SerializeField] float time;
+    [SerializeField] float max;
+
+    private void Update{
+        time += Time.deltaTime;
+        if (time >= max){
+            time = 0
+        }
+        var value = curve.Evaluate(time);
+        Debug.Log(value); //for printing, can delete
+        light.intensity = value;
+    }
+
+    /*
+    TO GO IN THE OPPOSITE DIRECTION OF ANIMATION CURVE RATHER THAN RESTARTING(??)
+    private void Update{
+        time += Time.deltaTime*direction;
+        if (time >= max){
+            direction = -1;
+        }
+        var value = curve.Evaluate(time);
+        Debug.Log(value); //for printing, can delete
+        light.intensity = value;
+    }   
+    */
+}
