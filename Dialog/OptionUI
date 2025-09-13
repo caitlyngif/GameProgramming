@@ -1,0 +1,11 @@
+internal class OptionUI : MonoBehavior
+{
+    [SerializeField] TMPro.TextMeshProUGUI titletext;
+    [SerializeField] DialogOption option;
+    [SerializeField] DialogManager manager;
+
+    internal void Set()
+    {
+        
+    }
+}
