@@ -1,0 +1,19 @@
+public class QuestManager : MonoBehavior{
+    List<Quest> quests = new List<Quest>();
+    private void Awake(){
+        var quest1 = new Quest("Traveling");
+        quest1.Add(new QuestReq("Go to marker 1"));
+        quests.Add(quest1);
+    }
+    private void Start(){
+        ShowQuest(quests[0]);
+    }
+    private void ShowQuest(Quest quest){
+        var questObj = Instantiate(questPrefab, parent);
+        foreach(var req in quest.GetAll()){
+            var reqObj = Instantiate(reqPrefab,  );
+        }
+    }
+
+    
+}
