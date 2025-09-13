@@ -1,0 +1,56 @@
+using UnityEngine;
+
+public class DialogManager : MonoBehavior
+{
+    [SerializeField] TMPro.TextMeshProUGUI lineText;
+    [SerializeField] OptionUI optionPrefab;
+    DialogNode root, current;
+
+    List<DialogNode> nodes;
+    List<GameObject> prevOptions = new();
+    private void Awake()
+    {
+        root = new DialogNode();
+        var quest = new DialogMode();
+        quest.text = "Go to castle";
+        quest.options = new()
+        {
+            new DialogOption(){text = "Ok!", next = root}
+        };
+        root.text = "Hello stranger";
+        root.options = new()
+        {
+            new DIalogOptions(){text = "Good day!", next = quest}
+        };
+    }
+    private void Show() {
+        lineText.text = current.text;
+        foreach (var option in current.options){
+            var optionUI = Instantiate(optionPrefab, transform);
+            optionUI.Set(this, optionUI);
+            prevOptions.Add(optionUI.gameObject);
+        }
+    }
+
+    private void Start() {
+        current = root;
+        Show();
+    }
+
+    internal void Advance(DialogOption option) {
+        DialogOption selected = null;
+        foreach (var item in current.options)
+        {
+            if (item.Equals(option))
+            {
+                selected = item;
+                break;
+            }
+        }
+        foreach (var child in prevOptions) {
+            Destroy(child.gameObject);
+        }
+        current = selected.next;
+        Show();
+    }
+}
