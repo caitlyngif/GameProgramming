@@ -1,0 +1,67 @@
+using UnityEnginge;
+
+/* 
+FPS = 60
+60 frames per second
+1 frame per 1/60 (0.0167) second
+
+FPS = 120
+120 frames per second
+1 frame per 1/120 second
+twice as many Update() calls as 60 FPS
+
+Create UI element
+Two text boxes at the center of the screen
+Canvas > UI > Panel (parent of text and buttons)
+    add component > Horizontal Layout Group
+    will arrange its children horizontally next to each other
+    add two texts as panel's children
+    check off control child size, leave alone use child scale, check child force expand
+make one child text minutes, and the other seconds (rename)
+add Timer script to Panel
+
+canvas > add button (reset button)
+create empty parent to panel and rest button named "Layout" (vertical layout group)
+in button click auto size
+
+
+*/
+public class Timer : MonoBehavior
+{
+    [SerializeField] TMPro.TextMeshPROUGUI minutesText, secondsText;
+    int current;
+
+    string convert(int amount)
+    {
+        if (amount < 10)
+        {
+            return $"0{amount}";
+        }
+        return amount.ToString();
+    }
+    private void Start()
+    {
+        // a = GameObject.Find("a"); //performance expensive, don't use. has to search entire scene
+        // access a's coin
+        // var a = new Coin();
+        // var c = a.GetComponent<Coin>();
+    }
+
+    private void Update()
+    {
+        // Debug.Log(Time.deltaTime); // how many seconds since last frame
+        // Debug.Log(Time.time); // how many seconds since game started
+
+        current += Time.deltaTime;
+        // without int, the timer is too accurate to 5 decimal points
+        secondsText.text = convert((int)current % 60); //show 0-59, not 60. restarts seconds to 0
+        minutesText.text = convert((int)current / 60);
+    }
+
+    //add component to button, click onclick
+    //runtime only, drag panel as object and timerscript(use reset() function)
+    public void Reset() //called when you press the button to reset the timer
+    {
+        current = 0;
+    }
+}
