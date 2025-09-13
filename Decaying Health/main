@@ -1,0 +1,16 @@
+using UnityEngine;
+
+/*
+Create Panel
+Put it in the top left
+Add image, child of the base
+name image HP
+choose image > field
+if you import an image:
+    texture type default > sprite
+    sprite mode multiple > single
+    field > horizontal
+    fill amount > amount to change to change the health bar
+
+Health Decay Script attached to 
+*/
