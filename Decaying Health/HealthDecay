@@ -1,0 +1,24 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+//attached to player instead of UI
+
+public class HealthDecay : MonoBehavior
+{
+    [SerializeField] Image bar;
+    [SerializeField] int decay;
+    [SerializeField] int max;
+    [SerializeField] float value;
+    [SerializeField] float increment;
+
+    private void Update()
+    {
+        value = value - decay;
+        bar.fillAmount -= (value / max);
+    }
+
+    internal void Increment()
+    {
+        value += increment;
+    }
+}

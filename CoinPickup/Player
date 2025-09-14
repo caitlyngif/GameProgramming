@@ -1,0 +1,13 @@
+using UnityEngine;
+namespace CollectingCoins
+{
+    public class Player : MonoBehavior{
+        [SerializeField] int coins;
+        [SerializeField] TMPro.TextMeshPROUGUI coinText; // TMP attached to the counter
+        
+        public void Increment(){
+            coins++;
+            coinText.text = coins.ToString();
+        }
+    }
+}

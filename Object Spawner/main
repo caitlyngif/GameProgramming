@@ -1,0 +1,83 @@
+// create empty game object
+// create a plane
+// right click empty space in hierarchy window > create 3D object > plane
+// select main camera and go to game object, align with view
+// can split view windows on two screens to adjust camera
+// camera has a fov property, can adjust that
+// create a button
+// right click empty space in hierarchy window > create UI > button
+// 3 game objects created that are required for UI rendering
+// canvas: parent of all your UI elements
+// render mode says where it is rendered. keep it as overlay.
+// change constant pixel size to scale with screen size
+// 1920 x 1080
+// in game window, click different aspect ratios
+// set the anchor and the pivot
+// eventsystem: manages input with ui
+// import textmeshpro when prompted
+// under text (TMP) object, auto size
+// create a sphere game object
+// in project window, right click and create a file name ObjectSpawner
+// in the file, create material
+// drag and drop ball from hierarchy into project window to create prefab
+// icon should be a blue cube now
+// good practice for everything to be a prefab
+// makes it faster and easier to change things in your scene
+// once you have the prefav, can get rid of the gameobjects in your scene
+// because you want to spawn them yourself
+
+// where to attach your script? have to be added to the scene to work
+// button
+// add component - "Spawner" new scripts, create and add
+// make sure it's checked off to be enabled
+// new script in assets, organize it to objectspawner
+
+// unity settings > "external tools" > choose IDE vs code
+// double click and opens in visual studio code
+
+//Button inspector window > runtime only > Spawner > function: Spawner
+
+using System.Collections.Generic; // for lists and queues
+using UnityEngine;
+public class Spawner : MonoBehavior //if script doesn't inherit from monobehavior, you can't attach it to your gameobject
+{
+
+    // public GameObject sphere;
+    // but we don't want something to be public if it doesn't have to be
+    // but it has to be public to see it in the editor
+    // solution:
+
+    [SerializeField] int limit, current_count; // assignment: up to 10 objects spawned
+    //can set limit in inspector window when opening spawner
+    [SerializeField] GameObject sphere; //private property that can be exposed in the editor
+    [SerializeField] Queue<GameObject> queue = new Queue<GameObject>();
+    // using a queue so that we can destroy the first game object when we hit the limit (FIFO)
+
+    public void Spawn()
+    {
+        if (current_count < limit)
+        {
+            //spawn
+            current_count++;
+        }
+        else
+        {
+            //remove first object
+            var first = queue.Dequeue();
+            Destroy(first);
+        }
+        queue.Enqueue(Instantiate(sphere));
+    }
+
+    //start is called once before the first execution of update after monobehavior
+    void Start()
+    {
+
+    }
+
+    //update is called once per frame
+    void Update()
+    {
+        
+    }
+}
