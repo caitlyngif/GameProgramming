@@ -23,7 +23,7 @@ namespace CollectingCoins
 
         private void OnTriggerEnter(Collider other)
         {
-            var player = other.gameObject.getComponent<Player>;
+            var player = other.gameObject.GetComponent<Player>();
             if (player != null) // means other is a collider attached to a game object with a player component attached to it
             {
                 player.Increment();
