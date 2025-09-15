@@ -11,7 +11,7 @@ public class Inventory : MonoBehavior{
         var item = map.First(z => z.key.Equals(key)).item;
         items.SetActive(true);
     }
-    internal void Add(EqEnum key)
+    internal void Add(EqEnum key) 
     {
         if (available < slots.Count)
         {
