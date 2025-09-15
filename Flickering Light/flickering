@@ -11,21 +11,23 @@ edit to the intensity value
 
 using UnityEngine;
 
-public class Flickering : MonoBehavior{
+public class Flickering : MonoBehaviour
+{
     [SerializeField] AnimationCurve curve;
     [SerializeField] new Light light;
     [SerializeField] float time;
     [SerializeField] float max;
 
-    private void Update{
+    private void Update()
+    {
         time += Time.deltaTime;
         if (time >= max){
-            time = 0
+            time = 0;
         }
         var value = curve.Evaluate(time);
-        Debug.Log(value); //for printing, can delete
         light.intensity = value;
     }
+}
 
     /*
     TO GO IN THE OPPOSITE DIRECTION OF ANIMATION CURVE RATHER THAN RESTARTING(??)
@@ -39,4 +41,3 @@ public class Flickering : MonoBehavior{
         light.intensity = value;
     }   
     */
-}
