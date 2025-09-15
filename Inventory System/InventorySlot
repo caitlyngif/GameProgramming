@@ -1,13 +1,15 @@
-using Unity Engine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehavior{
+    [Header("Data for this slot")]
     [SerializeField] EqEnum key;
     [SerializeField] Image icon;
+    [Header("Map")]
     [SerializeField] List<Map> map = new();
 
     public void Set(EqEnum key){
-        icon.sprite = map.First(z => z.Equals(key)).icon;
+        icon.sprite = map.First(z => z.key.Equals(key)).icon;
     }
 
     public void Click(){

@@ -3,8 +3,8 @@ using StarterAssets;
 
 public class EquipPickup : MonoBehavior{
     [SerializeField] EqEnum key;
-    private void on TriggerEnter(Collider other){
-        var player = other.GetComponent<ThirdPersonController();
+    private void onTriggerEnter(Collider other){
+        var player = other.GetComponent<Inventory>();
         if(player){
             player.Add(key);
         }

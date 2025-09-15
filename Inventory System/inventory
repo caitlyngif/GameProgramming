@@ -2,17 +2,25 @@
 using UnityEngine;
 
 public class Inventory : MonoBehavior{
-    List<EqEnum> itmes = new();
+    List<EqEnum> items = new();
     [SerializeField] List<InventorySlot> slots = new();
     int available;
 
-    internal void Add(EqEnum key){
-        if (available < slots.Count){
-            items.Add(key)
+    internal void Enable(EqEnum key)
+    {
+        var item = map.First(z => z.key.Equals(key)).item;
+        items.SetActive(true);
+    }
+    internal void Add(EqEnum key)
+    {
+        if (available < slots.Count)
+        {
+            items.Add(key);
             slots[available++].Set(key);
         }
-        else{
-            Debug.Log("Inventory is full")
+        else
+        {
+            Debug.Log("Inventory is full");
         }
     }
 }

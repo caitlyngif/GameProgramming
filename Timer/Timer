@@ -1,36 +1,8 @@
-using UnityEnginge;
-
-/* 
-FPS = 60
-60 frames per second
-1 frame per 1/60 (0.0167) second
-
-FPS = 120
-120 frames per second
-1 frame per 1/120 second
-twice as many Update() calls as 60 FPS
-
-Create UI element
-Two text boxes at the center of the screen
-Canvas > UI > Panel (parent of text and buttons)
-    add component > Horizontal Layout Group
-    will arrange its children horizontally next to each other
-    add two texts as panel's children
-    check off control child size, leave alone use child scale, check child force expand
-make one child text minutes, and the other seconds (rename)
-add Timer script to Panel
-
-canvas > add button (reset button)
-create empty parent to panel and rest button named "Layout" (vertical layout group)
-in button click auto size
-
-
-*/
-public class Timer : MonoBehavior
+using UnityEngine;
+public class Timer : MonoBehaviour
 {
-    [SerializeField] TMPro.TextMeshPROUGUI minutesText, secondsText;
-    int current;
-
+    [SerializeField] TMPro.TextMeshProUGUI minutesText, secondsText;
+    float current;
     string convert(int amount)
     {
         if (amount < 10)
@@ -38,13 +10,6 @@ public class Timer : MonoBehavior
             return $"0{amount}";
         }
         return amount.ToString();
-    }
-    private void Start()
-    {
-        // a = GameObject.Find("a"); //performance expensive, don't use. has to search entire scene
-        // access a's coin
-        // var a = new Coin();
-        // var c = a.GetComponent<Coin>();
     }
 
     private void Update()
