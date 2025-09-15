@@ -12,5 +12,7 @@ if you import an image:
     field > horizontal
     fill amount > amount to change to change the health bar
 
-Health Decay Script attached to 
+Source Image: UI sprite
+    Image type: filled
+    this is what allows the bar to be filled
 */
