@@ -2,7 +2,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI minutesText, secondsText;
-    float current;
+    [SerializeField] float current; // made serialized field so I could show it going from 59 seconds to 1 minute on timer UI in video
     string convert(int amount)
     {
         if (amount < 10)
