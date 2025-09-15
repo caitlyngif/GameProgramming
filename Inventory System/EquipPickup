@@ -1,7 +1,7 @@
 using UnityEngine;
 using StarterAssets;
 
-public class EquipPickup : MonoBehavior{
+public class EquipPickup : MonoBehaviour{
     [SerializeField] EqEnum key;
     private void onTriggerEnter(Collider other){
         var player = other.GetComponent<Inventory>();

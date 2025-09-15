@@ -39,7 +39,7 @@
 
 using System.Collections.Generic; // for lists and queues
 using UnityEngine;
-public class Spawner : MonoBehavior //if script doesn't inherit from monobehavior, you can't attach it to your gameobject
+public class Spawner : MonoBehaviour //if script doesn't inherit from monobehavior, you can't attach it to your gameobject
 {
 
     // public GameObject sphere;

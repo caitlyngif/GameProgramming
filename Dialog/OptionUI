@@ -1,4 +1,4 @@
-internal class OptionUI : MonoBehavior
+internal class OptionUI : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI titletext;
     [SerializeField] DialogOption option;

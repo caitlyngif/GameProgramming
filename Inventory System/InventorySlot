@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehavior{
+public class InventorySlot : MonoBehaviour{
     [Header("Data for this slot")]
     [SerializeField] EqEnum key;
     [SerializeField] Image icon;

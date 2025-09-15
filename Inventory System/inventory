@@ -1,7 +1,7 @@
 // added to player
 using UnityEngine;
 
-public class Inventory : MonoBehavior{
+public class Inventory : MonoBehaviour{
     List<EqEnum> items = new();
     [SerializeField] List<InventorySlot> slots = new();
     int available;

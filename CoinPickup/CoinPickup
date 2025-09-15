@@ -11,7 +11,7 @@
 using UnityEngine;
 namespace CollectingCoins
 {
-    public class Pickup : MonoBehavior
+    public class Pickup : MonoBehaviour
     {
     // player collides with coin
     // script is attached to coin

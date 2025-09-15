@@ -4,7 +4,7 @@ namespace CollectingCoins
 // attached to player
 
 {
-    public class PlayerPickup : MonoBehavior{
+    public class PlayerPickup : MonoBehaviour{
         [SerializeField] int coins;
         [SerializeField] TMPro.TextMeshPROUGUI coinText; // TMP attached to the counter
         

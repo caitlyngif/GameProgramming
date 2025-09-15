@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DialogManager : MonoBehavior
+public class DialogManager : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI lineText;
     [SerializeField] OptionUI optionPrefab;
