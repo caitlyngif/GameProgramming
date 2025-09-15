@@ -68,16 +68,4 @@ public class Spawner : MonoBehavior //if script doesn't inherit from monobehavio
         }
         queue.Enqueue(Instantiate(sphere));
     }
-
-    //start is called once before the first execution of update after monobehavior
-    void Start()
-    {
-
-    }
-
-    //update is called once per frame
-    void Update()
-    {
-        
-    }
 }
