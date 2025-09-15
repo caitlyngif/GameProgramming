@@ -1,7 +1,10 @@
 using UnityEngine;
 namespace CollectingCoins
+
+// attached to player
+
 {
-    public class Player : MonoBehavior{
+    public class PlayerPickup : MonoBehavior{
         [SerializeField] int coins;
         [SerializeField] TMPro.TextMeshPROUGUI coinText; // TMP attached to the counter
         

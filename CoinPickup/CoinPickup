@@ -13,7 +13,7 @@ namespace CollectingCoins
 {
     public class Pickup : MonoBehavior
     {
-    // player collides with ocin
+    // player collides with coin
     // script is attached to coin
     // player collides with coin and this function is called
     // player's collider is passed to this function
@@ -23,7 +23,7 @@ namespace CollectingCoins
 
         private void OnTriggerEnter(Collider other)
         {
-            var player = other.gameObject.getComponent<Player>();
+            var player = other.gameObject.getComponent<PlayerPickup>();
             if (player != null) // means other is a collider attached to a game object with a player component attached to it
             {
                 player.Increment();
