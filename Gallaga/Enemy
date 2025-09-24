@@ -5,14 +5,13 @@ namespace Gallagga
     {
         private void OnTriggerEnter(Collider other)
         {
-            // Debug.Log("Enemy collided with " + other.name);
             var bullet = other.gameObject.GetComponent<Bullet>();
             if (bullet != null)
             {
                 bullet.Increment();
                 Destroy(gameObject);
+                Destroy(bullet.gameObject);
             }
-        }
+        } 
     }
 }
-

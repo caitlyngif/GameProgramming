@@ -1,19 +1,16 @@
 using UnityEngine;
-
 namespace Gallagga
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] GameObject bulletPrefab; // Assign your bullet prefab in Inspector
-        [SerializeField] Transform firePoint;     // Empty GameObject as child of player for bullet spawn
+        [SerializeField] GameObject bulletPrefab;
+        [SerializeField] Transform gun;     // Empty GameObject child of player for bullet spawn
 
         // Called when Spacebar is pressed
         public void OnShoot()
         {
             Debug.Log("Shoot!");
-            
-            // Spawn the bullet at firePoint position, no rotation needed
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(bulletPrefab, gun.position, gun.rotation);
         }
     }
 }

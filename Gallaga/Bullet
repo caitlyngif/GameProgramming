@@ -1,22 +1,25 @@
 using UnityEngine;
-
 namespace Gallagga
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] float speed = 10f;      // Speed along Z-axis
-        [SerializeField] TMPro.TextMeshProUGUI scoreText;     // Assign TMP Text in Inspector
-        [SerializeField] int score;
+        [SerializeField] float speed = 10f;
+        [SerializeField] TMPro.TextMeshProUGUI scoreText;
+        [SerializeField] static int score;
+        [SerializeField] GameObject loseScreen;
 
         void Update()
         {
             // Move bullet forward along Z-axis
-            transform.position += Vector3.forward * speed * Time.deltaTime;
+            transform.position += transform.forward * speed * Time.deltaTime;
+            if (score == 18)
+            {
+                loseScreen.SetActive(true);
+            }
         }
 
         public void Increment()
         {
-            Debug.Log("Increment called");
             score++;
             scoreText.text = "Score: " + score.ToString();
         }
