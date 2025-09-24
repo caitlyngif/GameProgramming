@@ -1,0 +1,24 @@
+using UnityEngine;
+
+namespace Gallagga
+{
+    public class Bullet : MonoBehaviour
+    {
+        [SerializeField] float speed = 10f;      // Speed along Z-axis
+        [SerializeField] TMPro.TextMeshProUGUI scoreText;     // Assign TMP Text in Inspector
+        [SerializeField] int score;
+
+        void Update()
+        {
+            // Move bullet forward along Z-axis
+            transform.position += Vector3.forward * speed * Time.deltaTime;
+        }
+
+        public void Increment()
+        {
+            Debug.Log("Increment called");
+            score++;
+            scoreText.text = "Score: " + score.ToString();
+        }
+    }
+}
