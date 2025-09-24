@@ -6,7 +6,7 @@ namespace CollectingCoins
 {
     public class PlayerPickup : MonoBehaviour{
         [SerializeField] int coins;
-        [SerializeField] TMPro.TextMeshPROUGUI coinText; // TMP attached to the counter
+        [SerializeField] TMPro.TextMeshProUGUI coinText; // TMP attached to the counter
         
         public void Increment(){
             coins++;
