@@ -1,0 +1,16 @@
+using UnityEngine;
+
+public class Bullet : MonoBehaviour
+{
+    [SerializeField] float speed;
+    Transform target;
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+    private void Update()
+    {
+        Vector3 direction = target.position - transform.position;
+        transform.position += direction.normalized * Time.deltaTime * speed;
+    }
+}

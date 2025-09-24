@@ -1,0 +1,72 @@
+/*
+Enemies: have a sphere collider, set as trigger
+Pellets: set as trigger
+remember to apply all
+
+if we hit an enemy, we want to show a new screen
+
+on player, add a script: PacmanTrigger
+*/
+
+using UnityEngine;
+public class PacmanTrigger : MonoBehaviour {
+    [SerializeField] GameObject loseScreen;
+    [SerializeField] Image image;
+    float powerTimer;
+    [SerializeField] float maxPowerTime;
+    [SerializeField] bool _poweredUp;
+    bool poweredUp
+    {
+        get => _poweredUp;
+        set
+        {
+            if (value)
+            {
+                powerTimer = maxPowerTime;
+                _poweredUp = value;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var powerup = other.GetComponent<Powerup>();
+        if (powerup)
+        {
+            poweredUp = true;
+            return;
+        }
+        var ghost = other.GetComponent<Ghost>();
+        if (ghost)
+        {
+            HandleGhost(ghost);
+        }
+    }
+    private void HandleGhost(Ghost ghost)
+    {
+        if (poweredUp)
+        {
+            Destroy(ghost.GameObject);
+        }
+        else
+        {
+            loseScreen.SetActive(true);
+        }
+    }
+    private void Update()
+    {
+        if (powerTimer > 0)
+        {
+            powerTimer -= powerTimer.deltaTime;
+            image.fillAmount = powerTimer / maxPowerTime;
+        }
+        else
+        {
+            if (poweredUp)
+            {
+                poweredUp = false;
+                image.fillAmount = 0;
+            }
+        }
+    }
+}

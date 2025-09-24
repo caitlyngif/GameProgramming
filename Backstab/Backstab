@@ -1,0 +1,22 @@
+// attached to enemy
+
+using UnityEngine;
+
+public class Backstab : MonoBehaviour
+{
+    [SerializeField] GameObject marker; // set marker to backstab target (child of enemy)
+    [SerializeField] Transform player; // set player to player capsule (child of parent)
+    [SerializeField] bool isInRange;
+
+    private void Update()
+    {
+        var e = transform.forward;
+        var p = player.position - transform.position;
+        Debug.Log(p);
+        isInRange = p.sqrMagnitude < 2;
+        // isInRange = Vector3.Distance(transform.position, player.position) < 2; // calculates square root, is too expensive for every frame
+        var dot = Vector3.Dot(e, p);
+        marker.SetActive((dot < -0.75) && isInRange); // set marker active if dot < -0.75
+    }
+
+}

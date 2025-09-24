@@ -1,0 +1,19 @@
+// attached to enemy
+
+using UnityEngine;
+
+public class FOV : MonoBehaviour
+{
+    [SerializeField] GameObject marker; // set marker to backstab target (child of enemy)
+    [SerializeField] Transform player; // set player to player capsule (child of parent)
+    [SerializeField] bool isInRange;
+
+    private void Update()
+    {
+        var e = transform.forward;
+        var p = player.position - transform.position;
+        var angle = Vector3.Angle(p, e);
+        Debug.Log(angle);
+        marker.SetActive(angle < 30);
+    }
+}

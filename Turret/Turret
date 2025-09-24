@@ -1,0 +1,47 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+/*
+if bullets are going down, then create an empty parent of the gun (which will have a horizontal z-axis)
+bullets should not be a child of the turret, because when the turret rotates, the bullets will also
+*/
+public class Turret : MonoBehaviour
+{
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform target;
+    [SerializeField] Transform gun;
+    [SerializeField] float time, cooldown;
+    Queue<Bullet> pool = new();
+    private void Awake()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            var bullet = Instantiate(bulletPrefab);
+            pool.Enqueue(bullet);
+        }
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+        if (time > cooldown)
+        {
+            time = 0;
+            Shoot();
+        }
+        transform.forward = target.position - transform.position;
+    }
+
+    private void Shoot()
+    {
+        /* var bullet = Instantiate(bulletPrefab, transform);
+        bullet.SetTarget(target); 
+        var bullet = Instantiate(bulletPrefab, gun); */
+        if (pool.Count > 0)
+        {
+            var bullet = pool.Dequeue();
+            bullet.transform.position = gun.position;
+            bullet.transform.rotation = gun.rotation;
+        }
+    }
+}
