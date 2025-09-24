@@ -1,71 +1,75 @@
-/*
-Enemies: have a sphere collider, set as trigger
-Pellets: set as trigger
-remember to apply all
-
-if we hit an enemy, we want to show a new screen
-
-on player, add a script: PacmanTrigger
-*/
+// add to player
 
 using UnityEngine;
-public class PacmanTrigger : MonoBehaviour {
+using UnityEngine.UI;
+public class PowerupTrigger : MonoBehaviour
+{
     [SerializeField] GameObject loseScreen;
     [SerializeField] Image image;
     float powerTimer;
     [SerializeField] float maxPowerTime;
-    [SerializeField] bool _poweredUp;
+    bool _poweredUp;
+
     bool poweredUp
     {
         get => _poweredUp;
         set
         {
-            if (value)
+            if (_poweredUp)
             {
                 powerTimer = maxPowerTime;
-                _poweredUp = value;
+                // _poweredUp = value;
+            }
+            else
+            {
+                // _poweredUp = false;
+                image.fillAmount = 0;
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        var powerup = other.GetComponent<Powerup>();
-        if (powerup)
+        var powerUpObject = other.GetComponent<Powerup>();
+        if (powerUpObject)
         {
             poweredUp = true;
+            Destroy(powerUpObject.gameObject); // destroy power up
             return;
         }
-        var ghost = other.GetComponent<Ghost>();
+
+        var ghost = other.GetComponent<EnemyComp>();
         if (ghost)
         {
             HandleGhost(ghost);
         }
     }
-    private void HandleGhost(Ghost ghost)
+
+    private void HandleGhost(EnemyComp ghost)
     {
         if (poweredUp)
         {
-            Destroy(ghost.GameObject);
+            Destroy(ghost.gameObject);
         }
         else
         {
             loseScreen.SetActive(true);
         }
     }
+
     private void Update()
     {
-        if (powerTimer > 0)
+        if (poweredUp && powerTimer > 0)
         {
-            powerTimer -= powerTimer.deltaTime;
+            powerTimer -= Time.deltaTime;
             image.fillAmount = powerTimer / maxPowerTime;
         }
         else
         {
-            if (poweredUp)
+            if (poweredUp && powerTimer <= 0)
             {
                 poweredUp = false;
-                image.fillAmount = 0;
+                // image.fillAmount = 0;
             }
         }
     }
