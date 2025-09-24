@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+// attach Powerup to powerup prefab
+// attach PowerupTrigger to player
 public class PowerupTrigger : MonoBehaviour
 {
     [SerializeField] GameObject loseScreen;

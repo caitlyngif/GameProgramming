@@ -1,0 +1,7 @@
+using UnityEngine;
+
+//attach to enemy, also attach enemy script to enemy
+public class EnemyComp : MonoBehaviour
+{
+    // enemy component to detect
+}

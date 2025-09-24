@@ -1,0 +1,10 @@
+using UnityEngine;
+public class PlayerPickup : MonoBehaviour{
+    [SerializeField] int pelletCount;
+    [SerializeField] TMPro.TextMeshProUGUI scoreText;
+        
+    public void Increment(){
+        pelletCount++;
+        scoreText.text = "Score: " + pelletCount.ToString();
+    }
+}
