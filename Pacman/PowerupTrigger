@@ -1,5 +1,3 @@
-// add to player
-
 using UnityEngine;
 using UnityEngine.UI;
 public class PowerupTrigger : MonoBehaviour
@@ -15,17 +13,25 @@ public class PowerupTrigger : MonoBehaviour
         get => _poweredUp;
         set
         {
+            _poweredUp = value;
             if (_poweredUp)
             {
                 powerTimer = maxPowerTime;
                 // _poweredUp = value;
+                image.fillAmount = 1;
+                image.gameObject.SetActive(true);
             }
             else
             {
                 // _poweredUp = false;
                 image.fillAmount = 0;
+                image.gameObject.SetActive(false);
             }
         }
+    }
+    private void Start()
+    {
+        image.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
