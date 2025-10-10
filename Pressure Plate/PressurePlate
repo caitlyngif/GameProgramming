@@ -1,0 +1,39 @@
+// attach to plate
+
+public class PressurePlate : MonoBehaviour{
+    [SerializeField] Transform gate;
+    [SerializeField] float speed;
+    [SerializeField] float up, down; // up is 4.5, down is 2
+    Vector3 start, end;
+    float t;
+    
+    /* void Start()
+    {
+        start = gate.position;
+        t = 1;
+    } */
+
+    private void OnTriggerEnter(Collider other)
+    {
+        t = 0;
+        start = gate.position;
+        end = new Vector3(0, up, 0);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        t = 0;
+        start = gate.position;
+        end = new Vector3(0, down, 0);
+    }
+    
+    private void Update()
+    {
+        if (t < 1)
+        {
+            t += Time.deltaTime * speed;
+            gate.position = Vector3.Lerp(start, end, t);
+        }
+        
+    }
+}
