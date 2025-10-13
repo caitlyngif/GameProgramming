@@ -1,0 +1,31 @@
+/* 
+rig > animation type > humanoid, nothing else will work if it's not
+
+mixamo for characters and animations
+
+download the animation with skin. xbot or ybot is a smaller download.
+
+character > component in unity > animator
+needs this to be animated
+don't add "animation" component (different from animator) to complex models
+animator has different states
+
+also needs animator controller component
+need one of these for every state machine
+double click in project
+cannot delete, but can create new states
+    create state > empty
+    creates default state of the character (idle)
+    set the motion for that state to map it to an actual animation clip (not the animation file itself, expand the file, find the animation that has a triangle icon)
+    that's the actual animation clip that you can set in the motion in inspector
+
+set the controller in the animator
+
+create new state
+right click, make transition, choose other state
+can click on the transition to get information about the two states
+can customize how long the transition is
+Some animations have an exit time. if i pick up a cup, its finished, if i put down the cup, it's finished
+idle doesn't finish, it loops. no exit time. 
+specify in transition inspect whether it has an exit time. if i have it check marked, it will do one iteration and then automatically transition to next state
+*/
